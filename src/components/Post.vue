@@ -5,11 +5,13 @@
       <span class="profile-name">{{ contentData.name }}</span>
     </div>
     <div
+      @click="$store.commit('like')"
       class="post-body"
+      :class="contentData.filter"
       :style="{ backgroundImage: `url(${contentData.postImage})` }"
     ></div>
     <div class="post-content">
-      <p>{{ contentData.likes }} Likes</p>
+      <p>{{ $store.state.likes }} Likes</p>
       <p>
         <strong>{{ contentData.name }}</strong> {{ contentData.content }}
       </p>

@@ -24,12 +24,17 @@
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
+  <h4>안녕 {{ name }}</h4>
+  <button @click="$store.commit('changeAge')">버튼</button>
+  <p>{{ $store.state.more }}</p>
+  <button @click="$store.dispatch('getData')">더보기</button>
 </template>
 
 <script>
 import Container from "./components/Container.vue";
 import contentData from "./data";
 import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
   name: "App",
@@ -42,6 +47,12 @@ export default {
       text: "",
       selectFilter: "",
     };
+  },
+  computed: {
+    name() {
+      return this.$store.state.name;
+    },
+    ...mapState(["name", "age", "likes"]),
   },
   mounted() {
     this.emitter.on("boxClick", (a) => {
